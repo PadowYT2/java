@@ -14,10 +14,8 @@ RUN         apt update -y \
                 iproute2 \
                 libfreetype6 \
                 tini \
-				zip \
-				unzip \
-                libgtk2.0-0 \
-                libasound2 \
+                zip \
+                unzip \
                 ffmpeg
 
 ## Setup user and working directory

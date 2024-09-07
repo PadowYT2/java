@@ -18,7 +18,7 @@ RUN         apt update -y \
 				unzip \
                 libgtk2.0-0 \
                 libasound2 \
-                ffprobe
+                ffmpeg
 
 ## Setup user and working directory
 RUN         useradd -m -d /home/container -s /bin/bash container

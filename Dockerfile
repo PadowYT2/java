@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 ARG JAVA_VERSION=21
-ARG PLATFORM
+ARG TARGETPLATFORM
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -11,7 +11,7 @@ RUN apt-get update -y \
     && apt-get install -y curl ca-certificates openssl git tar sqlite3 fontconfig tzdata locales iproute2 ffmpeg \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.UTF-8 \
-    && curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://download.oracle.com/graalvm/${JAVA_VERSION}/latest/graalvm-jdk-${JAVA_VERSION}_linux-$(if [ "$PLATFORM" = "arm64" ]; then echo "aarch64"; else echo "x64"; fi)_bin.tar.gz \
+    && curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://download.oracle.com/graalvm/${JAVA_VERSION}/latest/graalvm-jdk-${JAVA_VERSION}_linux-$(if [ "${TARGETPLATFORM}" = "linux/arm64" ]; then echo "aarch64"; else echo "x64"; fi)_bin.tar.gz \
     && mkdir -p /opt/java/graalvm \
     && cd /opt/java/graalvm \
     && tar -xf /tmp/graalvm.tar.gz --strip-components=1 \
